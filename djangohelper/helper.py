@@ -5,6 +5,7 @@ from django.utils import simplejson
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
+from django.conf import settings
 
 def json_response(data):
     return HttpResponse(simplejson.dumps(data), mimetype='text/html')#application/json
