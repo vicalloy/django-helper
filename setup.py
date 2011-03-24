@@ -1,6 +1,7 @@
 from setuptools import setup, find_packages
+import djangohelper
 
-version = '0.8.1'
+version = djangohelper.__version__
 
 LONG_DESCRIPTION = """
 """
