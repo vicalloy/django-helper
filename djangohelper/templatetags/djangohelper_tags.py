@@ -15,3 +15,17 @@ def getvars(request, excludes):
             return "&%s" % getvars.urlencode()
         else:
             return ''
+
+@register.simple_tag(takes_context=True)
+def get_setting(context, key, default_val, as_key):
+    """ 
+    get val form settings and set to context
+      {% load djangohelper_tags %}
+      {% get_setting "key" default_val "as_key" %}
+      {{ as_key }}
+    """
+    if ("%s" % default_val).startswith('$.'):
+        default_val = getattr(settings, default_val[2:])
+    val = getattr(settings, key, default_val)
+    context[as_key] = val
+    return ''
