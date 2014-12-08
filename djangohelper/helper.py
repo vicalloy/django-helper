@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 from django.http import HttpResponse
-from django.utils import simplejson
+try:
+    import json as simplejson
+except ImportError:
+    from django.utils import simplejson
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
@@ -47,7 +50,7 @@ def flash_login_required(function):
 
 def request_get_next(request):
     """
-    The part that's the least straightforward about views in this module is how they 
+    The part that's the least straightforward about views in this module is how they
     determine their redirects after they have finished computation.
 
     In short, they will try and determine the next place to go in the following order:
